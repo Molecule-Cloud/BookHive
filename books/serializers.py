@@ -30,9 +30,7 @@ class BookSerializer(serializers.ModelSerializer):
         if len(cleaned) not in [10, 13]:
             raise serializers.ValidationError("ISBN mus be either 10 or 13")
         
-        # === Check if it contains only digits for ISBN-13 or digits+X for ISNB-10
-
-        if not (cleaned.isdigit() or (len(cleaned) == 10 and cleaned[:-1].isdigit() and cleaned[-1] in 'xX')):
+        # === Check if it contains only cleaned[:-1].isdigit() and cleaned[-1] in 'xX')):
             raise serializers.ValidationError("Invalid ISBN")
         return cleaned
     
