@@ -18,7 +18,9 @@ class BookSerializer(serializers.ModelSerializer):
         
     class Meta:
         model = Book
-        fields = ['__all__']
+        fields = ['id', 'title', 'author', 'isbn',
+            'published_date', 'total_copies', 'available_copies',
+            'availability_status', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at']
 
 
