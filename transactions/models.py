@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
 from books.models import Book
-from django.core.validators import MinValueValidator
 from datetime import date, timedelta
+from django.utils import timezone
 
 class Transaction(models.Model):
     """
@@ -36,15 +36,15 @@ class Transaction(models.Model):
         Reson: To prevent more bugs
         """
         if not self.due_date:
-            self.due_date = date.today() + timedelta(date=14)
-        super().save(args, **kwargs)
+            self.due_date = timezone.now() + timedelta(days=14)
+        super().save(*args, **kwargs)
 
-        def __str__(self):
-            return f"{self.user} - {self.book.title} {self.get_status.display()}"
+    def __str__(self):
+        return f"{self.user} - {self.book.title} {self.get_status.display()}"
 
-        class Meta:
-            ordering = ['-checkout_date']
-            indexes = [
-                models.Index(fields=['status', 'due_date']),
-                models.Index(fields=['user', '-check_out_date'])
-                ]
+    class Meta:
+        ordering = ['-checkout_date']
+        indexes = [
+            models.Index(fields=['status', 'due_date']),
+            models.Index(fields=['user', '-checkout_date'])
+        ]

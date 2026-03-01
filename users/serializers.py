@@ -10,7 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
 
     class Meta:
-        fields = ['__all__']
+        model = CustomUser
+        fields = '__all__'
         read_only_fields = ['id' 'date_joined']
 
     def get_full_name(self, object):
@@ -28,7 +29,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only = True,
         required = True,
         validators = [validate_password],
-        style={'innput_type': 'password'}
+        style={'input_type': 'password'}
     )
     verify_password = serializers.CharField(
         write_only = True,
@@ -51,11 +52,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attributes
     
 
-    def create(seld, validated_data):
+    def create(self, validated_data):
         "Encrypt user creation"
 
-        validated_data.pop('validated_password')
-        user = CustomUser.objects.create_user(**validated_data)
+        password = validated_data.pop('password')
+        validated_data.pop('verify_password')
+        user = CustomUser.objects.create_user(password=password, **validated_data)
         user.is_active_member = True
         user.save()
         return user
