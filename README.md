@@ -241,9 +241,9 @@ This project is licensed under the MIT License.
 
 ## Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/Molecule-Cloud)
-- LinkedIn: [Your Profile](https://linkedin.com/in/benjaminappiah1223)
+**Benjamin Appiah**
+- GitHub: (https://github.com/Molecule-Cloud)
+- LinkedIn: (https://linkedin.com/in/benjaminappiah1223)
 
 ## Acknowledgments
 
