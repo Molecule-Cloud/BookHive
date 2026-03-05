@@ -253,4 +253,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with Django REST Framework** • **Deployed on PythonAnywhere** • **© 2024 BookHive**
+**Built with Django REST Framework** • **Deployed on PythonAnywhere** • **© 2026 BookHive**
